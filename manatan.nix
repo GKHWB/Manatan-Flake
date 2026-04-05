@@ -1,8 +1,24 @@
-{ 
+{
   stdenv,
   fetchurl,
   libgcc,
   wayland,
+  glib,
+  nspr,
+  nss,
+  at-spi2-atk,
+  cups,
+  libxcomposite,
+  libxdamage,
+  libxrandr,
+  libgbm,
+  cairo,
+  pango,
+  udev,
+  alsa-lib,
+  libx11,
+  libxcursor,
+  libxi,
   libxkbcommon,
   buildFHSEnv,
 }:
@@ -13,7 +29,7 @@ pkg = stdenv.mkDerivation (finalAttrs: {
   pname = "manatan";
   version = "3.4.6";
 
-  src = 
+  src =
   let
     selectSystem =
       attrs:
@@ -41,8 +57,8 @@ pkg = stdenv.mkDerivation (finalAttrs: {
     install -m755 -D manatan $out/bin/manatan
   '';
 
-  runtimeDependencies = [ 
-    wayland 
+  runtimeDependencies = [
+    wayland
     libxkbcommon
   ];
 
@@ -62,6 +78,24 @@ buildFHSEnv {
   targetPkgs = pkgs: with pkgs; [
     fontconfig
     wayland
+    # webview
+    glib
+    nspr
+    nss
+    at-spi2-atk
+    cups.lib
+    libxcomposite
+    libxdamage
+    libxrandr
+    libgbm
+    cairo
+    pango
+    udev
+    alsa-lib
+    # x11
+    libx11
+    libxcursor
+    libxi
     libxkbcommon
     freetype
     libz
